@@ -24,10 +24,61 @@ npm run start           # Start production server
 npm run lint            # Run ESLint
 npm run typecheck       # Run TypeScript compiler check
 
+# Setup
+./scripts/setup.sh      # Run setup script to check environment
+
 # Database (when Supabase CLI is set up)
 supabase start          # Start local Supabase
 supabase db reset       # Reset local database
 supabase db push        # Push migrations to remote
+
+# GitHub CLI
+gh auth login           # Authenticate GitHub CLI
+gh repo create          # Create GitHub repository
+gh auth status          # Check authentication status
+
+# Vercel CLI
+vercel login            # Authenticate Vercel CLI
+vercel                  # Deploy to Vercel
+vercel whoami           # Check authentication status
+vercel env              # Manage environment variables
+```
+
+## CLI Tools Setup
+
+### GitHub CLI
+```bash
+# Install (if not already installed)
+# - macOS: brew install gh
+# - Linux: https://cli.github.com/manual/installation
+# - Windows: winget install --id GitHub.cli
+
+# Authenticate
+gh auth login
+
+# Create repository (after authentication)
+gh repo create care-collective --public --description "An accessible web application for family caregivers to offer or request help"
+
+# Push to GitHub
+git remote add origin https://github.com/YOUR_USERNAME/care-collective.git
+git push -u origin master
+```
+
+### Vercel CLI
+```bash
+# Install globally
+npm install -g vercel
+
+# Authenticate
+vercel login
+
+# Deploy
+vercel
+
+# Manage environment variables
+vercel env add NEXT_PUBLIC_SUPABASE_URL
+vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY
+vercel env add SUPABASE_SERVICE_ROLE_KEY
 ```
 
 ## Environment Variables
