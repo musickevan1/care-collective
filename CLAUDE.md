@@ -37,11 +37,13 @@ gh auth login           # Authenticate GitHub CLI
 gh repo create          # Create GitHub repository
 gh auth status          # Check authentication status
 
-# Vercel CLI
+# Vercel Deployment
 vercel login            # Authenticate Vercel CLI
-vercel                  # Deploy to Vercel
-vercel whoami           # Check authentication status
-vercel env              # Manage environment variables
+vercel link             # Link project to Vercel
+vercel env add          # Add environment variables
+vercel --prod           # Deploy to production
+vercel domains          # Manage custom domains
+vercel ls               # List deployments
 ```
 
 ## CLI Tools Setup
@@ -149,28 +151,57 @@ supabase/
 - Accessible components with keyboard navigation
 - Dark mode support (via CSS custom properties)
 
+## Deployment & URLs
+
+### Production
+- **URL**: https://care-collective-17547uiez-musickevan1s-projects.vercel.app
+- **Status**: ✅ Live and functional
+- **Environment**: Production with Supabase integration
+- **Auto-Deploy**: ✅ Enabled from `master` branch
+
+### Repository
+- **GitHub**: https://github.com/musickevan1/care-collective.git
+- **Branch**: `master` (main deployment branch)
+
+### Development Workflow
+1. **Local Development**: `npm run dev` → http://localhost:3000
+2. **Push Changes**: `git push origin master`
+3. **Auto Deploy**: Vercel automatically deploys from GitHub
+4. **Preview**: Each commit gets a unique preview URL
+
 ## Development Status
 
 ### ✅ Completed Features
 1. Next.js 15 project setup with TypeScript
-2. Tailwind CSS v4 + shadcn/ui configuration
+2. Tailwind CSS v4 + shadcn/ui configuration  
 3. Supabase integration with auth
 4. Database schema design and migrations
 5. Email-link authentication flow
 6. Profile onboarding system
 7. Help Exchange Board with real-time updates
 8. Role-based access control (RLS policies)
+9. **SuperDesign Implementation**:
+   - Warm orange caregiving brand theme
+   - Mobile-first responsive design
+   - Updated landing page with hero/features/testimonial
+   - Mobile hamburger navigation
+   - Authentication pages per wireframes
+   - Announcements page with tabs
+   - Reusable component library
+10. **Production Deployment**:
+    - Vercel hosting with environment variables
+    - GitHub integration for auto-deployments
+    - SSL certificate and global CDN
 
 ### 🔄 In Progress
-- Payload CMS integration for announcements
-- CLAUDE.md documentation
+- Preview deployments for feature branches
+- Custom domain configuration
 
 ### 📋 Pending Tasks
 - Events calendar functionality
-- Responsive navigation layout
+- Payload CMS integration for announcements
 - Playwright testing setup
-- Vercel deployment configuration
-- Production deployment
+- Performance optimization
 
 ## Common Workflows
 
