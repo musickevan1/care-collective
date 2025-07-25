@@ -4,7 +4,10 @@ import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
+import { Label } from '@/components/ui/label'
+import { HeartHandshake } from 'lucide-react'
+import Link from 'next/link'
 
 export function SignInForm() {
   const [email, setEmail] = useState('')
@@ -30,7 +33,7 @@ export function SignInForm() {
       } else {
         setMessage('Check your email for a sign-in link!')
       }
-    } catch (error) {
+    } catch {
       setMessage('An error occurred. Please try again.')
     } finally {
       setIsLoading(false)
@@ -38,41 +41,64 @@ export function SignInForm() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto">
-      <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-center">
-          Welcome to CARE Collective
-        </CardTitle>
-        <CardDescription className="text-center">
-          Enter your email to receive a sign-in link
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Input
-              type="email"
-              placeholder="your.email@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              disabled={isLoading}
-            />
-          </div>
-          <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? 'Sending...' : 'Send Magic Link'}
-          </Button>
-          {message && (
-            <p className={`text-sm text-center ${
-              message.includes('Check your email') 
-                ? 'text-green-600' 
-                : 'text-red-600'
-            }`}>
-              {message}
-            </p>
-          )}
-        </form>
-      </CardContent>
-    </Card>
+    <div className="space-y-6">
+      {/* Logo */}
+      <div className="text-center">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-4">
+          <HeartHandshake className="h-8 w-8 text-primary" />
+        </div>
+        <h2 className="text-2xl font-bold text-foreground">Sign in to your account</h2>
+      </div>
+
+      {/* Form */}
+      <Card>
+        <CardContent className="p-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <Label htmlFor="email" className="text-sm font-medium text-foreground">
+                Email address
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="your.email@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={isLoading}
+                className="mt-1"
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? 'Sending...' : 'Send Magic Link'}
+            </Button>
+
+            {message && (
+              <p className={`text-sm text-center ${
+                message.includes('Check your email') 
+                  ? 'text-green-600 dark:text-green-400' 
+                  : 'text-destructive'
+              }`}>
+                {message}
+              </p>
+            )}
+
+            <div className="text-center text-sm text-muted-foreground space-y-2">
+              <p>Don&apos;t have an account?{' '}
+                <Link href="/auth/signup" className="text-primary hover:underline font-medium">
+                  Sign up
+                </Link>
+              </p>
+              <p>
+                <Link href="/auth/forgot-password" className="text-primary hover:underline">
+                  Forgot your password?
+                </Link>
+              </p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   )
 }

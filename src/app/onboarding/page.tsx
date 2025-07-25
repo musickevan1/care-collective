@@ -2,8 +2,13 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { OnboardingForm } from '@/components/auth/onboarding-form'
 
+export const metadata = {
+  title: 'Complete Profile - CARE Collective',
+  description: 'Complete your profile to start connecting with your community',
+}
+
 export default async function OnboardingPage() {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const { data: { user } } = await supabase.auth.getUser()
 

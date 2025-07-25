@@ -67,7 +67,7 @@ export function NewHelpForm() {
       } else {
         router.push('/')
       }
-    } catch (error) {
+    } catch {
       setMessage('An error occurred. Please try again.')
     } finally {
       setIsLoading(false)

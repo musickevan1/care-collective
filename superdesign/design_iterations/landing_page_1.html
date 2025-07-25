@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARE Collective</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="theme_1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--background);
+            color: var(--foreground);
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: oklch(0.75 0.2 50);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <header class="py-4 px-4 sm:px-6 lg:px-8">
+        <nav class="flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i data-lucide="heart-handshake" class="text-primary" style="width: 24px; height: 24px;"></i>
+                <span class="font-bold text-lg">CARE Collective</span>
+            </div>
+            <a href="/login" class="text-sm font-medium">Sign In</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="text-center py-16 px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl">
+                <div class="w-24 h-24 mx-auto mb-6">
+                    <img src="https://placehold.co/96x96/ff6600/ffffff.png?text=C" alt="CARE Collective Logo" class="rounded-full">
+                </div>
+                <h1 class="text-4xl font-bold tracking-tight sm:text-5xl" style="color: var(--foreground);">Community Care, Simplified.</h1>
+                <p class="mt-6 text-lg leading-8" style="color: var(--muted-foreground);">A supportive network for family caregivers to share, connect, and find help when it matters most.</p>
+                <div class="mt-10">
+                    <a href="/signup" class="btn-primary">Get Started</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-24 bg-white">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mx-auto max-w-2xl lg:text-center">
+                    <h2 class="text-base font-semibold leading-7" style="color: var(--primary);">Everything you need</h2>
+                    <p class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl" style="color: var(--foreground);">A helping hand for the helpers</p>
+                    <p class="mt-6 text-lg leading-8" style="color: var(--muted-foreground);">
+                        Our platform provides the tools and community to make caregiving less isolating and more manageable.
+                    </p>
+                </div>
+                <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+                    <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+                        <div class="relative pl-16">
+                            <dt class="text-base font-semibold leading-7" style="color: var(--foreground);">
+                                <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg" style="background-color: var(--primary);">
+                                    <i data-lucide="messages-square" class="text-white"></i>
+                                </div>
+                                Help Board
+                            </dt>
+                            <dd class="mt-2 text-base leading-7" style="color: var(--muted-foreground);">Post requests for help, from errands to respite care, and get support from a trusted network of fellow caregivers.</dd>
+                        </div>
+                        <div class="relative pl-16">
+                            <dt class="text-base font-semibold leading-7" style="color: var(--foreground);">
+                                <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg" style="background-color: var(--primary);">
+                                    <i data-lucide="megaphone" class="text-white"></i>
+                                </div>
+                                Announcements
+                            </dt>
+                            <dd class="mt-2 text-base leading-7" style="color: var(--muted-foreground);">Stay informed with the latest updates, resources, and events relevant to the caregiving community.</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 px-4 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <p class="text-lg font-medium" style="color: var(--muted-foreground);">
+                    "CARE Collective has been a lifeline. It's more than just an app; it's a community that understands."
+                </p>
+                <div class="mt-6">
+                    <p class="font-semibold">Jane D., Caregiver</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 px-4 sm:px-6 lg:px-8 border-t" style="border-color: var(--border);">
+        <div class="flex justify-center items-center gap-6 text-sm">
+            <a href="/about" class="hover:underline">About</a>
+            <a href="/faq" class="hover:underline">FAQ</a>
+            <span style="color: var(--muted-foreground);">&copy; 2025 CARE Collective</span>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

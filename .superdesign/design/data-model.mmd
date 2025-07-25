@@ -1,0 +1,45 @@
+erDiagram
+    profiles {
+        uuid id PK "FK to auth.users.id"
+        string full_name
+        string email
+        string role "e.g., member, admin"
+        timestamp created_at
+    }
+
+    help_posts {
+        uuid id PK
+        uuid author_id FK to profiles.id
+        string title
+        string content
+        string category "e.g., errands, respite"
+        boolean is_urgent
+        timestamp created_at
+    }
+
+    announcement_posts {
+        uuid id PK
+        uuid author_id FK to profiles.id
+        string title
+        string content
+        timestamp created_at
+    }
+
+    roles {
+        int id PK
+        string name "e.g., member, admin"
+    }
+
+    background_checks {
+        uuid id PK
+        uuid user_id FK to profiles.id
+        string status "e.g., pending, approved, rejected"
+        string provider "e.g., Checkr"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    profiles ||--o{ help_posts : "creates"
+    profiles ||--o{ announcement_posts : "creates"
+    profiles ||--o{ background_checks : "has"
+    profiles }|..|{ roles : "has role"

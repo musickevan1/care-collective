@@ -1,0 +1,47 @@
+graph TD
+    subgraph Public
+        A[Home: /] --> B[/about];
+        A --> C[/faq];
+        A --> D{Auth};
+    end
+
+    subgraph Auth
+        D --> E[/login];
+        D --> F[/signup];
+        D --> G[/password-reset];
+    end
+
+    subgraph App
+        H[Announcements: /app/announcements]
+        I[Help Board: /app/help-board]
+        J[Profile: /app/profile]
+        K[Admin: /app/admin]
+        L[Onboarding: /app/onboarding]
+    end
+
+    subgraph "Onboarding Flow"
+        L --> L1[Step 1: User Info];
+        L1 --> L2[Step 2: Care Recipient Info];
+        L2 --> L3[Step 3: Availability];
+        L3 --> H;
+    end
+
+    subgraph "Help Board Flow"
+        I --> I1[List View];
+        I1 --> I2[Detail View: /help-board/{id}];
+        I1 --> I3[New Post: /help-board/new];
+    end
+
+    subgraph "Profile Flow"
+        J --> J1[View Profile];
+        J1 --> J2[Edit Profile: /profile/edit];
+        J1 --> J3[Background Check Stub: /profile/background-check];
+    end
+
+    subgraph "Admin Flow"
+        K --> K1[User Management: /admin/users];
+        K --> K2[Content Management: /admin/content];
+    end
+
+    E --> H;
+    F -- Supabase Email Confirmation --> L;

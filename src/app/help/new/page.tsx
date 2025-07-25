@@ -2,8 +2,13 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { NewHelpForm } from '@/components/help/new-help-form'
 
+export const metadata = {
+  title: 'Post Help - CARE Collective',
+  description: 'Post a new help request or offer assistance to your community',
+}
+
 export default async function NewHelpPage() {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const { data: { user } } = await supabase.auth.getUser()
 

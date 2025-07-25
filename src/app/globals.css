@@ -1,26 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 222.2 47.4% 11.2%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222.2 84% 4.9%;
-  --muted: 210 40% 96%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 210 40% 96%;
-  --accent-foreground: 222.2 84% 4.9%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 222.2 84% 4.9%;
+  /* CARE Collective Light Theme - Based on SuperDesign theme_1.css */
+  --background: 250 250 252; /* Light grayish background */
+  --foreground: 20 20 24; /* Dark text */
+  --card: 255 255 255; /* White cards */
+  --card-foreground: 20 20 24;
+  --popover: 255 255 255;
+  --popover-foreground: 20 20 24;
+  --primary: 234 88 12; /* Warm orange for caregiving brand */
+  --primary-foreground: 255 255 255;
+  --secondary: 241 245 249; /* Light gray */
+  --secondary-foreground: 20 20 24;
+  --muted: 241 245 249;
+  --muted-foreground: 100 116 139; /* Muted gray text */
+  --accent: 251 146 60; /* Lighter orange accent */
+  --accent-foreground: 20 20 24;
+  --destructive: 239 68 68; /* Red for destructive actions */
+  --destructive-foreground: 255 255 255;
+  --border: 226 232 240; /* Light border */
+  --input: 226 232 240;
+  --ring: 234 88 12; /* Orange focus ring */
   --radius: 0.5rem;
+  
+  /* Typography */
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: var(--font-merriweather), Georgia, serif;
+  --font-mono: var(--font-fira-code), 'SF Mono', monospace;
 }
 
 @theme inline {
@@ -43,36 +49,187 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: var(--font-merriweather), Georgia, serif;
+  --font-mono: var(--font-fira-code), 'SF Mono', monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    /* CARE Collective Dark Theme - Based on SuperDesign default_ui_darkmode.css */
+    --background: 15 15 15; /* Dark background */
+    --foreground: 250 250 250; /* Light text */
+    --card: 24 24 27; /* Dark card background */
+    --card-foreground: 250 250 250;
+    --popover: 24 24 27;
+    --popover-foreground: 250 250 250;
+    --primary: 248 250 252; /* Light primary in dark mode */
+    --primary-foreground: 15 15 15;
+    --secondary: 39 39 42; /* Darker gray */
+    --secondary-foreground: 250 250 250;
+    --muted: 39 39 42;
+    --muted-foreground: 161 161 170; /* Muted light text */
+    --accent: 39 39 42;
+    --accent-foreground: 250 250 250;
+    --destructive: 220 38 38; /* Red for destructive actions */
+    --destructive-foreground: 250 250 250;
+    --border: 39 39 42; /* Dark border */
+    --input: 39 39 42;
+    --ring: 142 142 142; /* Gray focus ring in dark mode */
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* SuperDesign Component Classes */
+
+/* Button Components */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  min-height: 2.25rem;
+  outline: none;
+  text-decoration: none;
+}
+
+.btn:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-accent);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-foreground);
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-accent);
+}
+
+/* Form Components */
+.form-input {
+  width: 100%;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  color: var(--color-foreground);
+  font-size: 0.875rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.form-input:focus {
+  border-color: var(--color-ring);
+  box-shadow: 0 0 0 3px hsl(var(--ring) / 0.2);
+}
+
+.form-input::placeholder {
+  color: var(--color-muted-foreground);
+}
+
+/* Card Components */
+.card {
+  background-color: var(--color-card);
+  color: var(--color-card-foreground);
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--radius) + 4px);
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Badge Components */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  border: 1px solid;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badge-priority-high {
+  background: hsl(0 84% 60% / 0.1);
+  color: hsl(0 84% 60%);
+  border-color: hsl(0 84% 60% / 0.2);
+}
+
+.badge-priority-medium {
+  background: hsl(38 92% 50% / 0.1);
+  color: hsl(38 92% 50%);
+  border-color: hsl(38 92% 50% / 0.2);
+}
+
+.badge-priority-low {
+  background: hsl(142 76% 36% / 0.1);
+  color: hsl(142 76% 36%);
+  border-color: hsl(142 76% 36% / 0.2);
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+  .mobile-stack {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .mobile-center {
+    text-align: center;
+  }
+  
+  .mobile-full-width {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-text {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
 }

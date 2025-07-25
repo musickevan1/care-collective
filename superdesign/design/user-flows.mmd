@@ -1,0 +1,49 @@
+sequenceDiagram
+    actor User
+    participant Web as Website
+    participant Supabase as Auth
+
+    %% Onboarding Flow
+    User->>Web: Visits Home Page
+    User->>Web: Clicks "Sign Up"
+    Web->>User: Shows Sign Up Form
+    User->>Web: Fills form and submits
+    Web->>Supabase: Creates user account
+    Supabase->>User: Sends confirmation email
+    User->>Supabase: Clicks confirmation link
+    Supabase->>Web: Confirms user email
+    Web->>User: Redirects to Onboarding Step 1
+    User->>Web: Completes Onboarding (3 steps)
+    Web->>User: Redirects to Announcements page
+
+    %% Help-Seeking Flow
+    User->>Web: Navigates to Help Board
+    Web->>User: Displays list of posts
+    User->>Web: Clicks "Create New Post"
+    Web->>User: Shows new post form
+    User->>Web: Fills out and submits post
+    Web->>Web: Saves post to DB
+    Web->>User: Shows new post on Help Board with a success toast
+
+    %% Help-Offering Flow
+    actor Helper
+    Helper->>Web: Navigates to Help Board
+    Web->>Helper: Displays list of posts
+    Helper->>Web: Clicks on a post to view details
+    Web->>Helper: Shows post details and comments
+    Helper->>Web: Clicks "Offer Help" or "Comment"
+    Web->>Web: Saves offer/comment to DB
+    Web->>User: Notifies original poster (User) via in-app notification
+
+    %% Admin Flow
+    actor Admin
+    Admin->>Web: Logs in with Admin role
+    Web->>Admin: Shows main app view with Admin link in navigation
+    Admin->>Web: Clicks "Admin Panel"
+    Web->>Admin: Shows Admin Dashboard (Users/Content)
+    Admin->>Web: Clicks "Manage Users"
+    Web->>Web: Fetches user list from DB
+    Web->>Admin: Displays list of users
+    Admin->>Web: Clicks "Disable Account" on a specific user
+    Web->>Web: Updates user status in DB
+    Web->>Admin: Confirms action with a toast and updates UI

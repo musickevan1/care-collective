@@ -1,15 +1,17 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { HelpResponseModal } from './help-response-modal'
 import Link from 'next/link'
 import { Plus } from 'lucide-react'
 
 type HelpItem = {
   id: string
+  user_id: string
   title: string
   description: string
   type: 'request' | 'offer'
@@ -28,24 +30,10 @@ export function HelpBoard() {
   const [helpItems, setHelpItems] = useState<HelpItem[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [filter, setFilter] = useState<'all' | 'request' | 'offer'>('all')
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null)
   const supabase = createClient()
 
-  useEffect(() => {
-    loadHelpItems()
-    
-    const channel = supabase
-      .channel('help_items')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'help_items' }, () => {
-        loadHelpItems()
-      })
-      .subscribe()
-
-    return () => {
-      supabase.removeChannel(channel)
-    }
-  }, [])
-
-  const loadHelpItems = async () => {
+  const loadHelpItems = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('help_items')
@@ -66,7 +54,28 @@ export function HelpBoard() {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [supabase])
+
+  useEffect(() => {
+    const getCurrentUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser()
+      setCurrentUserId(user?.id || null)
+    }
+
+    getCurrentUser()
+    loadHelpItems()
+    
+    const channel = supabase
+      .channel('help_items')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'help_items' }, () => {
+        loadHelpItems()
+      })
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [loadHelpItems, supabase])
 
   const filteredItems = filter === 'all' 
     ? helpItems 
@@ -166,9 +175,17 @@ export function HelpBoard() {
                 </div>
               </div>
               <div className="mt-4">
-                <Button size="sm" className="w-full">
-                  Respond
-                </Button>
+                {currentUserId && currentUserId !== item.user_id ? (
+                  <HelpResponseModal
+                    helpItem={item}
+                    currentUserId={currentUserId}
+                    onResponseSubmitted={loadHelpItems}
+                  />
+                ) : currentUserId === item.user_id ? (
+                  <Button size="sm" className="w-full" variant="outline" disabled>
+                    Your Item
+                  </Button>
+                ) : null}
               </div>
             </CardContent>
           </Card>
