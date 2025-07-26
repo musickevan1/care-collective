@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Ensure high contrast for accessibility */
+  :root {
+    --foreground-rgb: 17, 24, 39; /* gray-900 */
+    --background-start-rgb: 249, 250, 251; /* gray-50 */
+    --background-end-rgb: 255, 255, 255;
+  }
+  
+  /* Focus states for keyboard navigation */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary-500 ring-0;
+  }
+  
+  /* Ensure minimum contrast ratios */
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgb(var(--background-end-rgb))
+      )
+      rgb(var(--background-start-rgb));
+  }
+  
+  /* Larger text for better readability */
+  html {
+    font-size: 16px; /* Base 16px for accessibility */
+  }
+  
+  /* Touch targets minimum 44px per WCAG */
+  button, 
+  [role="button"],
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@layer components {
+  /* Caregiver-focused component patterns */
+  .care-button-primary {
+    @apply bg-primary-500 hover:bg-primary-600 focus:bg-primary-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .care-button-secondary {
+    @apply bg-white hover:bg-gray-50 focus:bg-gray-50 text-gray-900 font-medium py-3 px-6 rounded-lg border-2 border-gray-300 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .care-input {
+    @apply block w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:border-primary-500 focus:ring-0 placeholder-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed;
+  }
+  
+  .care-card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+  }
+}
